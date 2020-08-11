@@ -1,16 +1,16 @@
-import { Inject, Container } from "../typescript-ioc";
-import { inspect } from "../my-tools";
+import { Inject, Container } from '../typescript-ioc';
+import { inspect } from '../my-tools';
 
 
 class InjectDirect {
     @Inject
-    public injected: Date
+    public injected: Date;
 
-    public later?: Date
+    public later?: Date;
 }
 
-console.group('Test 1')
-let instance = new InjectDirect();
+console.group('Test 1');
+const instance = new InjectDirect();
 inspect(instance);
 // []
 // 原型链上存在关于 injected 属性的 Getter/Setter，但属性上不存在 injected 属性。
@@ -23,16 +23,16 @@ inspect(instance);
 console.groupEnd();
 
 console.group('Test 2');
-let instance2 = new InjectDirect();
-for (let key of Object.keys(instance2)) {
+const instance2 = new InjectDirect();
+for (const key of Object.keys(instance2)) {
     console.log(key);
 }
 // 这时候还无法遍历到属性
 console.groupEnd();
 
-let variable = Container.get(InjectDirect)
+const variable = Container.get(InjectDirect);
 console.log('即使', variable, '通过 Container 的方式也是不可能的。');
-for (let k of Object.keys(variable)) {
+for (const k of Object.keys(variable)) {
     console.log(k);
 } // [ __BuildContext ]
 inspect(variable);
@@ -41,7 +41,7 @@ console.group('Test 3');
 
 class EmbDate {
     @Inject
-    date: Date
+    date: Date;
 }
 
 class InjectConstructor {
@@ -49,8 +49,8 @@ class InjectConstructor {
     }
 }
 
-let instanceByNew = new InjectConstructor();
-let instanceByGet = Container.get(InjectConstructor);
+const instanceByNew = new InjectConstructor();
+const instanceByGet = Container.get(InjectConstructor);
 inspect(instanceByNew);  // 魔法不生效
 inspect(instanceByGet);  // 魔法成功
 
@@ -60,14 +60,14 @@ console.groupEnd();
 console.group('Test 4');
 
 class InjectConstructorParam {
-    public createTime: Date
+    public createTime: Date;
 
     public constructor(@Inject createTime?: Date) {
         this.createTime = createTime;
     }
 }
 
-let instance4 = new InjectConstructorParam();
+const instance4 = new InjectConstructorParam();
 inspect(instance4);
 
 console.groupEnd();

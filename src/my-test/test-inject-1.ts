@@ -1,17 +1,17 @@
-import { Inject, Container } from "../typescript-ioc";
-import { inspect } from "../my-tools"
+import { Inject, Container } from '../typescript-ioc';
+import { inspect } from '../my-tools';
 
 
 class A {
-    public beforeInjected = new Date()
+    public beforeInjected = new Date();
 
     @Inject
-    public injectedVar: Date
+    public injectedVar: Date;
 
     public afterInjected = new Date();
 
     public someMemberFunction() {
-        console.log("This is a class function.")
+        console.log('This is a class function.');
     }
 
     public constructor() {
@@ -21,9 +21,9 @@ class A {
 
 Container.get(A);
 
-console.log("== Normal world ==")
+console.log('== Normal world ==');
 
-console.group("A:")
+console.group('A:');
 inspect(A);
 console.groupEnd();
 
@@ -45,15 +45,15 @@ console.groupEnd();
  * @see https://wangdoc.com/javascript/oop/new.html
  */
 
-console.group("A.prototype:")
+console.group('A.prototype:');
 inspect(A.prototype);
-console.groupEnd()
+console.groupEnd();
 
-console.group("A.prototype.constructor")
+console.group('A.prototype.constructor');
 console.log('A.prototype.constructor === A:', A.prototype.constructor === A);
 console.groupEnd();
 
-console.group("new A():");
+console.group('new A():');
 inspect(new A());
 console.groupEnd();
 

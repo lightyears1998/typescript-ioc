@@ -76,7 +76,7 @@ export class InjectorHandler {
     public static injectProperty(target: Function, key: string, propertyType: Function, instanceFactory: InstanceFactory) {
         // 注意，这里的 this 可以访问 InjectorHandler 类的所有静态属性
         // target 是一个构造函数。
-        console.group(`== injectProperty == ${__filename}:${getLine()}`)
+        console.group(`== injectProperty == ${__filename}:${getLine()}`);
         inspect(target);
         console.groupEnd();
 

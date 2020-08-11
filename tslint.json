@@ -5,9 +5,12 @@
   ],
   "rules": {
     "no-console": [
-      true,
+      false,
       "log",
       "error"
+    ],
+    "no-empty": [
+      false
     ],
     "semicolon": [
       true,
