@@ -3,7 +3,9 @@ dist
 !test/*.js
 doc
 node_modules
-.vscode
+.vscode/*
 reports
 *.log
 npm-debug.log*
+
+!.vscode/launch.json

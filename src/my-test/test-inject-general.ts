@@ -1,5 +1,5 @@
-import { Inject, Container } from "../src/typescript-ioc";
-import { inspect } from "../src/my-tools";
+import { Inject, Container } from "../typescript-ioc";
+import { inspect } from "../my-tools";
 
 
 class InjectDirect {

@@ -10,7 +10,8 @@
         "module": "commonjs",
         "sourceMap": true,
         "target": "es6",
-        "outDir": "./dist"
+        "outDir": "./dist",
+        "incremental": true
     },
     "include": [
         "src/**/*.ts"

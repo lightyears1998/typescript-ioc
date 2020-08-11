@@ -1,5 +1,5 @@
-import { Inject } from "../src/typescript-ioc";
-import { inspect } from "../src/my-tools"
+import { Inject, Container } from "../typescript-ioc";
+import { inspect } from "../my-tools"
 
 
 class A {
@@ -18,6 +18,8 @@ class A {
 
     }
 }
+
+Container.get(A);
 
 console.log("== Normal world ==")
 
