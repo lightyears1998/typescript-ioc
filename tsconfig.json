@@ -8,8 +8,6 @@
         ],
         "moduleResolution": "node",
         "module": "commonjs",
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
         "sourceMap": true,
         "target": "es6",
         "outDir": "./dist"

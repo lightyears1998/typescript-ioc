@@ -2,6 +2,7 @@ import 'reflect-metadata';
 
 import { IoCContainer } from './container/container';
 import { Scope, ObjectFactory } from './model';
+import { inspect, getLine } from './my-tools';
 
 /**
  * A decorator to tell the container that this class should be handled by the Request [[Scope]].
@@ -57,8 +58,8 @@ export function Singleton(target: Function) {
  * }
  * ```
  *
- * You will only be able to create instances of PersonService through the Container. 
- * 
+ * You will only be able to create instances of PersonService through the Container.
+ *
  * ```
  * let PersonService = new PersonService(); // will thrown a TypeError exception
  * ```
@@ -146,6 +147,11 @@ export function Factory(factory: ObjectFactory) {
  * ```
  */
 export function Inject(...args: Array<any>) {
+    console.group(`@Inject ${__filename}:${getLine()}`)
+    console.log(`args: ${args}`);
+    console.log(`this: ${this}`)
+    console.groupEnd();
+
     if (args.length === 2 || (args.length === 3 && typeof args[2] === 'undefined')) {
         return InjectPropertyDecorator.apply(this, args);
     } else if (args.length === 3 && typeof args[2] === 'number') {
@@ -199,11 +205,18 @@ export function InjectValue(value: string) {
  * Decorator processor for [[Inject]] decorator on properties
  */
 function InjectPropertyDecorator(target: Function, key: string) {
+    console.group(`@Inject for property ${__filename}:${getLine()}`)
+    inspect(target); // 构造函数的 prototype 属性，即实例对象所共有的原型对象被传入了。
+
     let t = Reflect.getMetadata('design:type', target, key);
     if (!t) {
         // Needed to support react native inheritance
         t = Reflect.getMetadata('design:type', target.constructor, key);
     }
+
+    console.log(t);
+    console.groupEnd();
+
     IoCContainer.injectProperty(target.constructor, key, t);
 }
 

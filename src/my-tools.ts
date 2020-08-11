@@ -15,7 +15,7 @@ export function inspect(obj: Object) {
         }
 
         if (shouldIter) {
-            console.log(obj, 'properties:', Object.getOwnPropertyNames(obj));
+            console.log(obj, 'ownProperties:', Object.getOwnPropertyNames(obj));
             obj = Object.getPrototypeOf(obj);
         } else {
             break;
@@ -24,5 +24,14 @@ export function inspect(obj: Object) {
 
     while (level--) {
         console.groupEnd();
+    }
+}
+
+
+export function getLine(): number {
+    try {
+        throw new Error();
+    } catch(err) {
+        return err.stack.split('\n')[2].split(':')[1];
     }
 }

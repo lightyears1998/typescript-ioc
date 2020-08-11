@@ -1,5 +1,6 @@
 import { InstanceFactory, ValueFactory } from './container-types';
 import { BuildContext } from '../model';
+import { inspect, getLine } from '../my-tools';
 
 const BUILD_CONTEXT_KEY = '__BuildContext';
 const IOC_WRAPPER_CLASS = 'ioc_wrapper';
@@ -73,6 +74,12 @@ export class InjectorHandler {
     }
 
     public static injectProperty(target: Function, key: string, propertyType: Function, instanceFactory: InstanceFactory) {
+        // 注意，这里的 this 可以访问 InjectorHandler 类的所有静态属性
+        // target 是一个构造函数。
+        console.group(`== injectProperty == ${__filename}:${getLine()}`)
+        inspect(target);
+        console.groupEnd();
+
         const propKey = `__${key}`;
         Object.defineProperty(target.prototype, key, {
             enumerable: true,
